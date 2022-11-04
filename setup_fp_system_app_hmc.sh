@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM APPS - HMC'
-script_version="1.0.0"
-script_date='2022/05/23'
+script_version="1.5.0"
+script_date='2022/11/04'
 
 # Define file reference path according with https link(s)
 fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-3.1.5.tar.gz'
@@ -12,7 +12,8 @@ fileref_model_archive_local='hmc.tar.gz'
 
 # Argument(s) default definition(s)
 fileref_env_default='fp_system_libs_hmc'
-fp_folder_libs_default=$HOME/fp_system_libs_hmc
+fp_folder_libs_default=$HOME/fp_system_libs_hmc/
+fp_folder_hmc_default=$HOME/fp_system_apps/
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -31,18 +32,26 @@ echo " ==> Script arguments values: $script_args_values"
 echo ""
 echo " ==> Script arguments 1 - Directory of dependecies [string: path]-> $1"
 echo " ==> Script arguments 2 - Filename of system environment [string: filename] -> $2"
+echo " ==> Script arguments 3 - Directory of hmc [string: path] -> $3"
 echo ""
 
 # Set argument(s)
 if [ $# -eq 0 ]; then
 	fp_folder_libs=$fp_folder_libs_default
 	fileref_env=$fileref_env_default
+	fp_folder_hmc=$fp_folder_hmc_default
 elif [ $# -eq 1 ]; then
 	fp_folder_libs=$1
 	fileref_env=$fileref_env_default
+	fp_folder_hmc=$fp_folder_hmc_default
 elif [ $# -eq 2 ]; then
 	fp_folder_libs=$1
 	fileref_env=$2
+	fp_folder_hmc=$fp_folder_hmc_default
+elif [ $# -eq 3 ]; then
+	fp_folder_libs=$1
+	fileref_env=$2
+	fp_folder_hmc=$3
 fi
 
 # Create library folder
@@ -51,8 +60,8 @@ if [ ! -d "$fp_folder_libs" ]; then
 fi
 
 # Define folder(s)
-fp_folder_source=$fp_folder_libs/source
-fp_folder_exec=$fp_folder_libs/hmc
+fp_folder_source=$fp_folder_hmc/source
+fp_folder_exec=$fp_folder_hmc/hmc
 # Define environment filename
 fp_file_env=$fp_folder_libs/$fileref_env
 
