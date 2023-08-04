@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 1.0.3 [2023-08-04]
+**************************
+APP: **setup_fp_system_app_nco.sh**
+	- Add -enable-ncap2 flag to build the ncap binary
+
 Version 1.0.2 [2023-05-18]
 **************************
 APP: **setup_fp_system_app_nco.sh**
