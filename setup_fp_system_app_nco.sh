@@ -5,18 +5,21 @@
 # http://nco.sourceforge.net/
 # http://nco.sourceforge.net/#Source
 # PRE-Requisites: 
-# sudo apt-get install antlr libantlr-dev # ANTLR
+# GENERIC:
 # sudo apt-get install libcurl4-gnutls-dev libexpat1-dev libxml2-dev # DAP-prereqs (curl, expat XML parser)
 # sudo apt-get install bison flex gcc g++ # GNU toolchain
-# sudo apt-get install gsl-bin libgsl0-dev # GSL					
-# sudo apt-get install ncl-ncarg # ESMF_RegridWeightGen for ncremap
+# NCAP2 BIN:
+# sudo apt-get install antlr libantlr-dev # ANTLR
+# sudo apt-get install gsl-bin libgsl0-dev # GSL		
+# NCREMAP BIN:			
+# sudo apt-get install ncl-ncarg # ESMF_RegridWeightGen 
 #-----------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM APPS - NCO'
-script_version="1.0.0"
-script_date='2023/05/18'
+script_version="1.1.0"
+script_date='2023/08/04'
 
 # Define library name, archive and repository
 library_clean=true
@@ -65,7 +68,7 @@ library_cmd_archive_unzip_group=(
 	"tar -xvf %LIBRARY_ARCHIVE_BUILDING_SOURCE -C %LIBRARY_PATH_BUILDING_SOURCE --strip-components=1"
 )
 
-library_cmd_archive_configure='./configure --prefix=%LIBRARY_PATH_BUILDING_DESTINATION'
+library_cmd_archive_configure='./configure --prefix=%LIBRARY_PATH_BUILDING_DESTINATION --enable-ncap2'
 
 library_cmd_archive_build='/usr/bin/make'
 library_cmd_archive_install='/usr/bin/make install'
