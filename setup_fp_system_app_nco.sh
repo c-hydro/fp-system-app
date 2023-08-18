@@ -18,15 +18,15 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM APPS - NCO'
-script_version="1.1.0"
-script_date='2023/08/04'
+script_version="1.2.0"
+script_date='2023/08/18'
 
 # Define library name, archive and repository
 library_clean=true
 library_name='nco'
 library_archive_generic_group=('nco.tar.gz')
-library_archive_reference_group=('nco-4.8.0.tar.gz')
-library_archive_address_group=('https://github.com/nco/nco/archive/4.8.0.tar.gz')
+library_archive_reference_group=('nco-5.1.7.tar.gz')
+library_archive_address_group=('https://github.com/nco/nco/archive/5.1.7.tar.gz')
 
 # Define library building root and source path
 generic_path_building_destination=$HOME/fp_system_apps
@@ -39,23 +39,51 @@ generic_path_installer_archive=$(pwd)
 deps_path_main=$HOME/fp_system_libs_generic/
 
 library_deps_netcdf_main=${deps_path_main}/netcdf-c
-
 library_deps_netcdf_inc=${library_deps_netcdf_main}/include/
 library_deps_netcdf_lib=${library_deps_netcdf_main}/lib/
 
 library_deps_udunits_main=${deps_path_main}/udunits
+library_deps_udunits_inc=${library_deps_udunits_main}/include/
+library_deps_udunits_lib=${library_deps_udunits_main}/lib/
+
+library_deps_antlr_main=${deps_path_main}/antlr
+library_deps_antlr_inc=${library_deps_antlr_main}/include/antlr/
+library_deps_antlr_lib=${library_deps_antlr_main}/lib/
 
 # Define export flags
-export CC=gcc 
-export FC=gfortran
 
+# netcdf c library
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${library_deps_netcdf_lib}
 
 export NETCDF4_ROOT=${library_deps_netcdf_main}
 export NETCDF_INC=${library_deps_netcdf_inc}
 export NETCDF_LIB=${library_deps_netcdf_lib}
 
+# udunits2 library
+export UDUNITS2_INC=${library_deps_udunits_inc}
+export UDUNITS2_LIB=${library_deps_udunits_lib}
 export UDUNITS2_PATH=${library_deps_udunits_main}
+export UDUNITS2_XML_PATH=${library_deps_udunits_main}/share/udunits/udunits2.xml
+
+# antlr library
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${library_deps_antlr_lib}
+
+export ANTLR_ROOT=${library_deps_antlr_main}
+export ANTLR_INC=${library_deps_antlr_inc}
+export ANTLR_LIB=${library_deps_antlr_lib}
+
+# compilers flgs
+export CC=gcc
+export FC=gfortran
+# export CFLAGS=""
+export CXXFLAGS="-fpermissive"
+
+# export for udunits2 - case 1
+export LDFLAGS="-L${library_deps_antlr_main}/lib/ -L${library_deps_udunits_main}/lib/ -ludunits2"
+export CPPFLAGS="-I${library_deps_antlr_main}/include/ -I${library_deps_udunits_main}/include"
+# export for udunits2 - case 2 
+#export LDFLAGS="-L${library_deps_antlr_main}/lib/" 
+#export CPPFLAGS="-I${library_deps_antlr_main}/include/"
 
 # Define library line command
 library_cmd_archive_download_local_group=(
@@ -68,10 +96,10 @@ library_cmd_archive_unzip_group=(
 	"tar -xvf %LIBRARY_ARCHIVE_BUILDING_SOURCE -C %LIBRARY_PATH_BUILDING_SOURCE --strip-components=1"
 )
 
-library_cmd_archive_configure='./configure --prefix=%LIBRARY_PATH_BUILDING_DESTINATION --enable-ncap2'
+library_cmd_archive_configure='./configure --prefix=%LIBRARY_PATH_BUILDING_DESTINATION --enable-ncap2 --enable-udunits2'
 
-library_cmd_archive_build='/usr/bin/make'
-library_cmd_archive_install='/usr/bin/make install'
+library_cmd_archive_build='make'
+library_cmd_archive_install='make install'
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -212,6 +240,8 @@ if [ ! -d "${library_path_bin}" -a ! -d "${library_path_lib}" ]; then
 
 	library_cmd_archive_configure=${library_cmd_archive_configure/'%LIBRARY_DEPS_UDUNITS_MAIN'/$library_deps_udunits_main}
 	library_cmd_archive_configure=${library_cmd_archive_configure/'%LIBRARY_DEPS_NETCDF_MAIN'/$library_deps_netcdf_main}
+	library_cmd_archive_configure=${library_cmd_archive_configure/'%LIBRARY_DEPS_ANTLR_MAIN'/$library_deps_antlr_main}
+	library_cmd_archive_configure=${library_cmd_archive_configure/'%LIBRARY_DEPS_ANTLR_MAIN'/$library_deps_antlr_main}
 
 	if [ ! -d "${library_deps_udunits_main}" ]; then
 		echo " ===> LIBRARY UDUNITS NOT FOUND. EXIT"
@@ -222,10 +252,14 @@ if [ ! -d "${library_path_bin}" -a ! -d "${library_path_lib}" ]; then
 		echo " ===> LIBRARY NETCDF NOT FOUND. EXIT"
 		exit
 	fi
-
-	# Execute command-line
-	cd $library_path_building_source
 	
+	if [ ! -d "${library_deps_antlr_main}" ]; then
+		echo " ===> LIBRARY ANTLR NOT FOUND. EXIT"
+		exit
+	fi
+	
+	# Execute command-line
+	cd ${library_path_building_source}
 	if ! ${library_cmd_archive_configure} ; then
 		# Info tag end (failed)
 		echo " ====> CONFIGURE ARCHIVE ... FAILED. ERRORS IN EXECUTING $library_cmd_archive_configure COMMAND-LINE"
@@ -243,7 +277,7 @@ if [ ! -d "${library_path_bin}" -a ! -d "${library_path_lib}" ]; then
 	# Execute command-line
 	cd $library_path_building_source
 	echo $(pwd)
-
+	
 	if ! ${library_cmd_archive_build} ; then
 		# Info tag end (failed)
 		echo " ====> BUILD ARCHIVE ... FAILED. ERRORS IN EXECUTING $library_cmd_archive_build COMMAND-LINE"

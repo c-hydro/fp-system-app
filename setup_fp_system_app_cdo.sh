@@ -62,8 +62,8 @@ library_cmd_archive_unzip_group=(
 
 library_cmd_archive_configure='./configure --with-jasper=%LIBRARY_DEPS_JASPER_MAIN --with-udunits2=%LIBRARY_DEPS_UDUNITS_MAIN --with-proj=%LIBRARY_DEPS_PROJ_MAIN --with-netcdf=%LIBRARY_DEPS_NETCDF_MAIN --with-eccodes=%LIBRARY_DEPS_ECCODES_MAIN --with-hdf5=%LIBRARY_DEPS_HDF5_MAIN --prefix=%LIBRARY_PATH_BUILDING_DESTINATION'
 
-library_cmd_archive_build='/bin/make'
-library_cmd_archive_install='/bin/make install'
+library_cmd_archive_build='make'
+library_cmd_archive_install='make install'
 # ----------------------------------------------------------------------------------------
 
 

@@ -2,6 +2,15 @@
 Changelog
 =========
 
+Version 1.0.4 [2023-08-18]
+**************************
+APP: **setup_fp_system_app_nco.sh**
+	- Update the nco application from 4.8.0 to 5.1.7 version
+	- Set the antlr and udunits2 libraries compiled from source(s) and not from repositories
+
+FIX: **all bash scripts**
+	- make commands set in root path and not in binaries path
+
 Version 1.0.3 [2023-08-04]
 **************************
 APP: **setup_fp_system_app_nco.sh**
