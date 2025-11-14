@@ -2,6 +2,12 @@
 Changelog
 =========
 
+Version 1.0.5 [2025-11-14]
+**************************
+APP: **setup_fp_system_app_hmc.sh**
+    - Script for installing hmc application
+    	- [2025-11-13] update the link of hmc version to 3.3.0 provided by the hmc-lib package 
+
 Version 1.0.4 [2023-08-18]
 **************************
 APP: **setup_fp_system_app_nco.sh**
