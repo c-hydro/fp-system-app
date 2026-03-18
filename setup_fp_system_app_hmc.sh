@@ -3,13 +3,13 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM APPS - HMC'
-script_version="1.5.2"
-script_date='2025/11/14'
+script_version="1.5.3"
+script_date='2026/03/18'
 
 # Define file reference path according with https link(s)
 # fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-3.1.5.tar.gz'			### 3.1.5 first version
 #fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/main/hmc-3.1.6.tar.gz'			### 3.1.6 old version
-fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/main/hmc-3.3.0.tar.gz'				### 3.3.0 last version
+fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/main/hmc-3.3.1.tar.gz'				### 3.3.0 last version
 fileref_model_archive_local='hmc.tar.gz'
 
 # Argument(s) default definition(s)
