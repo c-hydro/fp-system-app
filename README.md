@@ -1,4 +1,4 @@
-# fp-system-app
+# Flood-PROOFS System Applications (fp-system-app)
 
 Shell installers and environment helpers for the **FloodPROOFS** modelling system applications.
 
@@ -20,10 +20,12 @@ The repository description on GitHub identifies it as **“FloodProofs - Shell E
 
 ```text
 fp-system-app/
-├── AUTHORS.rst
-├── CHANGELOG.rst
-├── LICENSE.rst
-├── README.rst
+├── AUTHORS
+├── CODEOWNERS
+├── CHANGELOG
+├── LICENSE
+├── README.md
+├── .gitignore
 ├── cdo-2.0.0.tar.gz
 ├── nco-4.8.0.tar.gz
 ├── nco-5.1.7.tar.gz
