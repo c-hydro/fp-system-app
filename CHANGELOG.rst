@@ -2,11 +2,18 @@
 Changelog
 =========
 
+Version 1.0.6 [2026-04-09]
+**************************
+APP: **setup_fp_system_app_hmc.sh**
+    - Script for installing hmc application
+    	- update the link of hmc version to 3.4.2 provided by the hmc-lib package 
+    	- add comments to check the download of tar package from githhub repository 
+
 Version 1.0.5 [2025-11-14]
 **************************
 APP: **setup_fp_system_app_hmc.sh**
     - Script for installing hmc application
-    	- [2025-11-13] update the link of hmc version to 3.3.0 provided by the hmc-lib package 
+    	- update the link of hmc version to 3.3.0 provided by the hmc-lib package 
 
 Version 1.0.4 [2023-08-18]
 **************************
