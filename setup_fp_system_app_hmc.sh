@@ -3,13 +3,11 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM APPS - HMC'
-script_version="1.5.3"
-script_date='2026/03/18'
+script_version="1.5.6"
+script_date='2026/04/09'
 
 # Define file reference path according with https link(s)
-# fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-3.1.5.tar.gz'			### 3.1.5 first version
-#fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/main/hmc-3.1.6.tar.gz'			### 3.1.6 old version
-fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/main/hmc-3.3.1.tar.gz'				### 3.3.0 last version
+fileref_model_archive_remote='https://github.com/c-hydro/hmc-dev/archive/refs/tags/v3.4.2.tar.gz'				### 3.4.1 last version
 fileref_model_archive_local='hmc.tar.gz'
 
 # Argument(s) default definition(s)
@@ -102,6 +100,10 @@ fi
 tar xvfz hmc.tar.gz -C $fp_folder_source_hmc --strip-components=1
 cd $fp_folder_source_hmc
 
+echo " ::: HMC FILE LOCATION: $fileref_model_archive_local"
+echo " ::: HMC LIBS LOCATION: $fp_folder_libs"
+echo " ::: HMC EXEC LOCATION: $fp_folder_exec"
+
 source $fp_file_env
 chmod +x configure.sh
 ./configure.sh $fileref_model_archive_local $fp_folder_libs $fp_folder_exec true
@@ -116,8 +118,3 @@ echo " ==> ... END"
 echo " ==> Bye, Bye"
 echo " ==================================================================================="
 # ----------------------------------------------------------------------------------------
-
-
-
-
-
