@@ -1,0 +1,85 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+---
+
+## [Unreleased]
+
+### Added
+
+### Changed
+
+### Fixed
+
+---
+
+## [1.0.6] - 2026-04-09
+
+### Changed
+
+* Updated HMC version to **3.4.2** in `setup_fp_system_app_hmc.sh` (from `hmc-lib` package)
+
+### Added
+
+* Added comments to verify download of HMC tar package from GitHub repository
+
+---
+
+## [1.0.5] - 2025-11-14
+
+### Changed
+
+* Updated HMC version to **3.3.0** in `setup_fp_system_app_hmc.sh` (from `hmc-lib` package)
+
+---
+
+## [1.0.4] - 2023-08-18
+
+### Changed
+
+* Updated NCO from **4.8.0** to **5.1.7** in `setup_fp_system_app_nco.sh`
+* Configured `antlr` and `udunits2` libraries to be compiled from source instead of system repositories
+
+### Fixed
+
+* Ensured commands in all bash scripts are set in root path instead of binaries path
+
+---
+
+## [1.0.3] - 2023-08-04
+
+### Added
+
+* Added `--enable-ncap2` flag to build the `ncap` binary in `setup_fp_system_app_nco.sh`
+
+---
+
+## [1.0.2] - 2023-05-18
+
+### Added
+
+* Added script for installing CDO application in `setup_fp_system_app_nco.sh`
+
+---
+
+## [1.0.1] - 2023-03-03
+
+### Changed
+
+* Updated HMC version to **3.1.6** in `setup_fp_system_app_hmc.sh` (from `hmc-lib` package)
+
+---
+
+## [1.0.0] - 2022-05-23
+
+### Added
+
+* Added script for installing HMC application in `setup_fp_system_app_hmc.sh` (version **1.7.1** from `fp-envs` package)
+* Added script for installing CDO application in `setup_fp_system_app_cdo.sh`
+
+---
+
